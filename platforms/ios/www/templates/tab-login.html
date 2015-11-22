@@ -1,0 +1,13 @@
+<ion-view view-title="Login to stockmate" name="login-view" ng-controller="LoginController" class="loginscreen">
+    <ion-content class="padding">
+        <div class="loginlist list list-inset">
+            <label class="loginlabel item item-input">
+                <input type="text" placeholder="Username" ng-model="username" class="logininput">
+            </label>
+            <label class="item item-input">
+                <input type="password" placeholder="Password" ng-model="password" class="logininput">
+            </label>
+        </div>
+        <button class="button button-block button-calm" ng-click="login(username, password)">Login</button>
+    </ion-content>
+</ion-view>

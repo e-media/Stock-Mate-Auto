@@ -1,0 +1,48 @@
+<ion-view view-title='Add User' class="allstock">
+    <ion-content  ng-controller="UserCtrl">
+        <ion-refresher on-refresh="doRefresh()">
+        </ion-refresher>
+        <div class="list card">
+            <ion-list>
+                <ion-item>
+                    <div class="row">
+                        <div class="col col-center">
+                            <div class="list listadd">
+                                <label class="item item-input item-stacked-label">
+                                    <span class="input-label vehicle-input-label">USER NAME</span>
+                                    <input type="text" ng-model="user.username" class="vehicle-input-field" placeholder="ex. racer24" required>
+                                </label>
+                                <br>
+                                <label class="item item-input item-stacked-label">
+                                    <span class="input-label vehicle-input-label">PASSWORD</span>
+                                    <input type="text" class="vehicle-input-field"
+                                           ng-model="user.password" placeholder="ex. Silly489!0"
+                                           ng-minlength="5"
+                                           ng-maxlength="25"
+                                           required>
+                                </label>
+                                <br>
+                                <label class="item item-input item-stacked-label">
+                                    <span class="input-label vehicle-input-label">NAME & SURNAME</span>
+                                    <input type="text" ng-model="user.name" class="vehicle-input-field" placeholder="ex. John Smit" required>
+                                </label>
+                                <br>
+
+
+                                <select ng-model='user.role' required ng-options='option.value as option.name for option in typeOptions' animate="slide-in-up"></select>
+                            </div>
+                            <div class="message">
+                                {{message}}
+                            </div>
+                            <div class="col text-center">
+                                <button class="button button-positive" ng-click="newUser(user)">
+                                    Add User
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </ion-item>
+            </ion-list>
+        </div>
+    </ion-content>
+</ion-view>

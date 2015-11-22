@@ -1,0 +1,27 @@
+<ion-view view-title="Users">
+    <ion-content>
+        <ion-refresher on-refresh="doRefresh()">
+        </ion-refresher>
+        <div class="list card">
+            <ion-list>
+                <ion-item ng-repeat="user in users" item="users">
+                    <div class="row list">
+                        <div class="col col-80">
+                            <h3 style="margin-bottom: 0px; color: #2e6bbe" class="userlist">{{user.name}}</h3>
+                        </div>
+                        <div class="col col-20" ng-show="role == 'admin'">
+                            <button class="button button-positive" ng-click="deleteUser(user.user_id)">
+                                <i class="icon ion-close-circled"></i>
+                            </button>
+                        </div>
+                    </div>
+                </ion-item>
+            </ion-list>
+            <div class="row" ng-show="role == 'admin'">
+                <button class="button button-positive" ng-click="addUser()">
+                    <i class="icon">Add New User</i>
+                </button>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

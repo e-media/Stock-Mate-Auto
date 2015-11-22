@@ -1,0 +1,38 @@
+<!--
+Create tabs with an icon and label, using the tabs-dark style.
+Each tab's child <ion-nav-view> directive will have its own
+navigation history that also transitions its views in and out.
+-->
+<!--<ion-tabs class="tabs-icon-top tabs-background-dark tabs-color-stable">-->
+
+  <!-- Main Vehicle Tab -->
+  <!--<ion-tab title="" icon-off="list-menu" icon-on="list-menu" href="#/tab/home">-->
+    <!--<ion-nav-view name="tab-home"></ion-nav-view>-->
+  <!--</ion-tab>-->
+  <!-- Deploy Tab -->
+  <!--<ion-tab title="" icon-off="archive" icon-on="archive" href="#/tab/deploy">-->
+    <!--<ion-nav-view name="tab-deploy"></ion-nav-view>-->
+  <!--</ion-tab>-->
+
+  <!-- Analytics Tab -->
+  <!--<ion-tab title="Analytics" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" href="#/tab/analytics">-->
+    <!--<ion-nav-view name="tab-analytics"></ion-nav-view>-->
+  <!--</ion-tab>-->
+<!--</ion-tabs>-->
+
+<ion-tabs class="tabs-icon-top tabs-background-dark tabs-color-stable" ng-controller="TabsCtrl" ng-class="{'tabs-item-hide': hideTabs}">
+    <!-- Main Vehicle Tab -->
+    <ion-tab title="" icon-off="list-menu" icon-on="list-menu" href="#/tab/home">
+        <ion-nav-view name="tab-home"></ion-nav-view>
+    </ion-tab>
+
+    <!-- add vehicle -->
+    <ion-tab title="" icon-off="add-vehicle" icon-on="add-vehicle" href="#/tab/add-vehicle">
+        <ion-nav-view name="tab-add-vehicle"></ion-nav-view>
+    </ion-tab>
+
+    <!-- User Tab -->
+    <ion-tab title="" icon-off="add-user" icon-on="add-user" href="#/tab/user">
+        <ion-nav-view name="tab-user"></ion-nav-view>
+    </ion-tab>
+</ion-tabs>

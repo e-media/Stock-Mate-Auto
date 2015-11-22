@@ -1,0 +1,66 @@
+<ion-view view-title="Stockmate" cache-view="false" class="allstock">
+  <ion-content>
+      <ion-refresher on-refresh="doRefresh()">
+      </ion-refresher>
+      <div class="list card">
+          <div class="bar bar-header item-input-inset">
+              <ion-search placeholder="Search a vehicle" filter="search"></ion-search>
+          </div>
+          <ion-list>
+              <ion-item ng-repeat="vehicle in vehicles | filter:search.value" item="vehicles" href="#/tab/vehicle" ng-click="onItemView(vehicle)">
+                  <div class="row">
+
+                    <div class="col col-10 image_list" style="background-image: url('http://www.stockmateauto.co.za/v1/api_v1/v1/gallery/{{vehicle.image1}}')"></div>
+
+                      <div class="col col-70"style="padding-top: 0px;padding-bottom: 0px;">
+                          <div class="row" style="padding-top: 0px;">
+                            <div class="col col-100" style="overflow-x: hidden; padding-top: 0px;">
+                                {{vehicle.veh_make}} {{vehicle.mm_code}}
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col col-34">
+                                <img src="img/year_icon.png" width="12">
+                                <label class="offset-label">{{vehicle.year_model}}</label>
+                            </div>
+                            <div class="col col-34">
+                                <img src="img/colour_icon.png" width="12">
+                                <label class="offset-label">{{vehicle.veh_colour}}</label>
+                            </div>
+                            <div class="col col-30">
+                                <img src="img/kilometers_icon.png" width="12">
+                                <label class="offset-label">{{vehicle.speedo_reading}}</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                              <label class="info-label labelsmall">FLOOR:</label>
+                              <label class="offset-label labelsmall">{{vehicle.location}}</label>
+                          </div>
+                          <div class="row">
+                              <label class="info-label labelsmall">RETAIL:</label>
+                              <label class="offset-label labelsmall">R{{vehicle.retail_value}}</label>
+                          </div>
+                          <div class="row">
+                              <div class="col col-60" style="padding: 0px; line-height: 24px;">
+                              <label class="info-label labelsmall" style="margin: 0px;padding: 5px 0px 0px 5px;line-height: 18px;">TRADE:</label>
+                              <label class="offset-label labelsmall" style="margin: 0px;padding: 5px 0px 0px 0px;line-height: 18px;">R{{vehicle.trade_value}}</label>
+                              </div>
+                              <div class="col col-40" style="padding: 0px; line-height: 24px;">
+                                  <a href="#" ng-click="showDetails = ! showDetails" class="siv_click">
+                                      <label class="info-label labelsmall"  style="margin: 0px 0px 0px 5px;padding: 5px 0px 0px 5px;line-height: 18px;">SIV:
+                                      </label>
+                                  </a>
+                              <label class="offset-label labelsmall" ng-class="{ 'hidden': ! showDetails }" style="margin: 0px;padding: 5px 0px 0px 0px;line-height: 18px;">R{{vehicle.standin_value}}</label>
+                              </div>
+                          </div>
+                    </div>
+                    <div class="col col-center col-8"><img src="img/arrow.png" height="25"></div>
+                  </div>
+              </ion-item>
+          </ion-list>
+      </div>
+
+  </ion-content>
+</ion-view>
+

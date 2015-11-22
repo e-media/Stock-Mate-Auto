@@ -1,0 +1,143 @@
+<ion-view view-title='Add Vehicle' class="allstock">
+
+    <ion-content  ng-controller="PictureCtrl">
+        <ion-refresher on-refresh="doRefresh()">
+        </ion-refresher>
+        <div class="list card">
+            <ion-list>
+                <ion-item>
+                    <div class="row">
+                        <div class="col col-center">
+                            <div class="list listadd">
+                                <br>
+                                <div class="item">
+                                    <img src="http://www.stockmateauto.co.za/v1/api_v1/v1/img/info_icon_blue.png">
+                                </div>
+                                <label class="item item-input item-stacked-label">
+                                    <span class="input-label vehicle-input-label">VEHICLE MAKE</span>
+                                    <input type="text" ng-model="vehicle.veh_make" class="vehicle-input-field" placeholder="ex. BMW" required>
+                                </label>
+                                <br>
+                                <label class="item item-input item-stacked-label">
+                                    <span class="input-label vehicle-input-label">MODEL</span>
+                                    <input type="text" ng-model="vehicle.mm_code" class="vehicle-input-field" placeholder="ex. X6" required>
+                                </label>
+                                <br>
+                                <label class="item item-input item-stacked-label">
+                                    <span class="input-label vehicle-input-label">YEAR</span>
+                                    <input type="number" ng-model="vehicle.year_model" class="vehicle-input-field" placeholder="ex. 2015" required>
+                                </label>
+                                <br>
+                                <label class="item item-input item-stacked-label">
+                                    <span class="input-label vehicle-input-label">COLOUR</span>
+                                    <input type="text" ng-model="vehicle.vehicle_colour" class="vehicle-input-field" placeholder="ex. Black" required>
+                                </label>
+                                <br>
+                                <label class="item item-input item-stacked-label">
+                                    <span class="input-label vehicle-input-label">KILOMETERS</span>
+                                    <input type="number" ng-model="vehicle.vehicle_kilometers" class="vehicle-input-field" placeholder="ex. 12345" required>
+                                </label>
+                                <br>
+                                <label class="item-stacked-label">
+                                    <span class="input-label vehicle-input-label">PHOTOGRAPHS</span><br><br>
+                                    <div class="row" ng-show="imgURI1">
+                                        <div class="col">
+                                            <img  ng-src="{{imgURI1}}" class="addimage">
+                                        </div>
+                                    </div>
+                                    <div class="row" ng-show="imgURI2">
+                                        <div class="col">
+                                            <img  ng-src="{{imgURI2}}" class="addimage">
+                                        </div>
+                                    </div>
+                                    <div class="row" ng-show="imgURI3">
+                                        <div class="col">
+                                            <img  ng-src="{{imgURI3}}" class="addimage">
+                                        </div>
+                                    </div>
+                                    <div class="row" ng-show="imgURI4">
+                                        <div class="col">
+                                            <img  ng-src="{{imgURI4}}" class="addimage">
+                                        </div>
+                                    </div>
+                                    <div class="row" ng-show="imgURI4 === undefined">
+                                        <div class="col"><button class="imagebutton" ng-click="takePicture()"></button></div>
+                                    </div>
+                                </label>
+                                <br>
+                                <div class="item">
+                                    <img src="http://www.stockmateauto.co.za/v1/api_v1/v1/img/specs_icon_blue.png">
+                                </div>
+                                <br>
+                                <label class="item item-input item-stacked-label">
+                                    <span class="input-label vehicle-input-label">VEHICLE TYPE</span>
+                                    <input type="text" ng-model="vehicle.veh_type" class="vehicle-input-field" placeholder="ex. SUV" required>
+                                </label>
+                                <br>
+                                <label class="item item-input item-stacked-label">
+                                    <span class="input-label vehicle-input-label">EXTRA FITTED</span>
+                                    <input type="text" ng-model="vehicle.extra_fitted" class="vehicle-input-field" placeholder="ex. Towbar" required>
+                                </label>
+                                <br>
+                                <label class="item item-input item-stacked-label">
+                                    <span class="input-label vehicle-input-label">SERVICE HISTORY</span>
+                                    <input type="text" ng-model="vehicle.service_history" class="vehicle-input-field" placeholder="ex. Yes, with Agents" required>
+                                </label>
+                                <br>
+                                <label class="item item-input item-stacked-label">
+                                    <span class="input-label vehicle-input-label">FLOOR</span>
+                                    <input type="text" ng-model="vehicle.location" class="vehicle-input-field" placeholder="ex. Zambezi Auto" required>
+                                </label>
+                                <br><br>
+                                <div class="item">
+                                    <img src="http://www.stockmateauto.co.za/v1/api_v1/v1/img/value_icon_blue.png">
+                                </div>
+                                <br>
+                                <label class="item item-input item-stacked-label">
+                                    <span class="input-label vehicle-input-label">RECON</span>
+                                    <input type="number" ng-model="vehicle.recon_cost" class="vehicle-input-field" placeholder="ex. 10 000" required>
+                                </label>
+                                <br>
+                                <label class="item item-input item-stacked-label">
+                                    <span class="input-label vehicle-input-label">TRADE</span>
+                                    <input type="number" ng-model="vehicle.trade_value" class="vehicle-input-field" placeholder="ex. 20 000">
+                                </label>
+                                <br>
+                                <label class="item item-input item-stacked-label">
+                                    <span class="input-label vehicle-input-label">RETAIL</span>
+                                    <input type="number" ng-model="vehicle.retail_value" class="vehicle-input-field" placeholder="ex. 30 000" required>
+                                </label>
+                                <br>
+                                <label class="item item-input item-stacked-label">
+                                    <span class="input-label vehicle-input-label">STAND IN VALUE</span>
+                                    <input type="number" ng-model="vehicle.standin_value" class="vehicle-input-field" placeholder="ex. 40 000" required>
+                                </label>
+                                <br>
+                                <label class="item item-input item-stacked-label">
+                                    <span class="input-label vehicle-input-label">CONTACT NAME</span>
+                                    <input type="text" ng-model="vehicle.contact_name" class="vehicle-input-field" placeholder="ex. John" required>
+                                </label>
+                                <br>
+                                <label class="item item-input item-stacked-label">
+                                    <span class="input-label vehicle-input-label">CONTACT NUMBER</span>
+                                    <input type="tel" ng-model="vehicle.contact_number" class="vehicle-input-field" placeholder="ex. 081 234 5678" required>
+                                </label>
+                                <br>
+                                <label class="item item-input item-stacked-label">
+                                    <span class="input-label vehicle-input-label">COMMENTS</span>
+                                    <input type="text" ng-model="vehicle.comments" class="vehicle-input-field" required>
+                                </label>
+                                <br>
+                                <div class="col text-center">
+                                    <button class="button button-positive" ng-click="submit(vehicle)" required>
+                                        Add Vehicle
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ion-item>
+            </ion-list>
+        </div>
+    </ion-content>
+</ion-view>

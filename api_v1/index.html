@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Stock Mate Auto</title>
+    <link href='http://localhost/Projects/aptana/StockMateAuto/api_v1/css/style.css' rel='stylesheet' type='text/css'/>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://localhost/Projects/aptana/StockMateAuto/api_v1/js/ajaxGetPost.js"></script>
+    <script>
+
+
+        $(document).ready(function () {
+            var base_url = "http://localhost/Projects/aptana/StockMateAuto/api_v1/";
+            var url, encodedata;
+            $("#update").focus();
+
+            /* Load Updates */
+            url = base_url + 'api/updates';
+            encodedata = '';
+            ajax_data('GET', url, function (data) {
+
+                $.each(data.updates, function (i, data) {
+                    var html = "<div class='stbody' id='stbody" + data.update_id + "'><div class='stimg'><img src='" + data.profile_pic + "' class='stprofileimg'/></div>"
+                            + "<div class='sttext'><strong>" + data.name + "</strong>" + data.user_update + "<span id='" + data.update_id + "' class='stdelete'>Delete</span>";
+                    +"</div></div>";
+                    $(html).appendTo("#mainContent");
+                });
+
+            });
+
+
+            /* Load Stock */
+            url = base_url + 'api/stock';
+            encodedata = '';
+            ajax_data('GET', url, function (data) {
+                //console.log(url);
+                $.each(data.stock, function (i, data) {
+                    console.log(data);
+                    var html =  "<div id='veh_desc'>" + data.veh_description + "</div>";
+                    console.log(html);
+                    $(html).appendTo("#mainContent");
+                });
+
+            });
+
+            /* Insert Update */
+            $('body').on("click", '.stpostbutton', function () {
+                var update = $('#update').val();
+                encode = JSON.stringify({
+                    "user_update": update,
+                    "user_id": $('#user_id').val()
+                });
+                url = base_url + 'api/updates';
+                if (update.length > 0) {
+                    post_ajax_data(url, encode, function (data) {
+                        $.each(data.updates, function (i, data) {
+                            var html = "<div class='stbody' id='stbody" + data.update_id + "'><div class='stimg'><img src='" + data.profile_pic + "' class='stprofileimg'/></div>"
+                                    + "<div class='sttext'><strong>" + data.name + "</strong>" + data.user_update + "<span id='" + data.update_id + "' class='stdelete'>Delete</span>";
+                            +"</div></div>";
+                            $("#mainContent").prepend(html);
+
+                            $('#update').val('').focus();
+
+                        });
+                    });
+                }
+
+            });
+
+            /* Delete Updates */
+            $('body').on("click", '.stdelete', function () {
+                var ID = $(this).attr("id");
+                url = base_url + 'api/updates/delete/' + ID;
+                ajax_data('DELETE', url, function (data) {
+                    $("#stbody" + ID).fadeOut("slow");
+                });
+            });
+
+
+        });
+    </script>
+
+</head>
+
+<body>
+<div style="margin:0 auto;width:1000px;">
+
+    Get Users <a href="http://localhost/Projects/aptana/StockMateAuto/api_v1/api/users">http://localhost/Projects/aptana/StockMateAuto/api_v1/api/users</a><br/><br/>
+    Get Updates <a href="http://localhost/Projects/aptana/StockMateAuto/api_v1/api/updates">http://localhost/Projects/aptana/StockMateAuto/api_v1/api/updates</a><br/><br/>
+    User Search <a href="http://localhost/Projects/aptana/StockMateAuto/api_v1/api/users/search/s">http://localhost/Projects/aptana/StockMateAuto/api_v1/api/users/search/s</a><br/><br/>
+    Delete Update <a href="http://localhost/Projects/aptana/StockMateAuto/api_v1/api/updates/delete/1">http://localhost/Projects/aptana/StockMateAuto/api_v1/api/updates/delete/1</a><br/><br/>
+    Post Update <a href="http://localhost/Projects/aptana/StockMateAuto/api_v1/api/updates">http://localhost/Projects/aptana/StockMateAuto/api_v1/api/updates</a><br/><br />
+
+    Get Users <a href="http://localhost/Projects/aptana/StockMateAuto/api_v1/api/stock">http://localhost/Projects/aptana/StockMateAuto/api_v1/api/stock</a><br/><br/>
+
+
+    <div>
+        <textarea id="update" class="stupdatebox"></textarea><br/>
+        <input type="hidden" id="user_id" value="1">
+        <input type="submit" value="POST" class="stpostbutton">
+    </div>
+
+
+    <div id="mainContent">
+
+    </div>
+
+    <div id="stockContent"></div>
+
+    <div style="width:380px;float:right">
+
+    </div>
+
+</div>
+
+
+</body>
+</html>

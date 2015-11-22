@@ -1,0 +1,135 @@
+<ion-view view-title="Vehicle Info" class="singlestock">
+
+    <ion-content style="background: #e8ebf1;" class="padding">
+        <div class="list card">
+            <ion-list>
+                <ion-slide-box show-pager="true" does-continue="true" on-slide-changed="slideHasChanged($index)">
+                    <ion-slide ng-if="data.vehicle.image1 != undefined  &&  data.vehicle.image1 != null && data.vehicle.image1 !=''">
+                        <img src="http://www.stockmateauto.co.za/v1/api_v1/v1/gallery/{{data.vehicle.image1}}" />
+                    </ion-slide>
+                    <ion-slide ng-if="data.vehicle.image2 != undefined  &&  data.vehicle.image2 != null && data.vehicle.image2 !=''">
+                        <img src="http://www.stockmateauto.co.za/v1/api_v1/v1/gallery/{{data.vehicle.image2}}" />
+                    </ion-slide>
+                    <ion-slide ng-if="data.vehicle.image3 != undefined  &&  data.vehicle.image3 != null && data.vehicle.image3 !=''">
+                        <img src="http://www.stockmateauto.co.za/v1/api_v1/v1/gallery/{{data.vehicle.image3}}" />
+                    </ion-slide>
+                    <ion-slide ng-if="data.vehicle.image4 != undefined && data.vehicle.image4 != null && data.vehicle.image4 !=''">
+                        <img src="http://www.stockmateauto.co.za/v1/api_v1/v1/gallery/{{data.vehicle.image4}}" />
+                    </ion-slide>
+                </ion-slide-box>
+                <div class="row">
+                    <div class="col col-100" style="overflow-x: hidden; margin: 5px">
+                        <h4 style="margin-bottom: 0px; color: #2e6bbe">{{data.vehicle.veh_make}} {{data.vehicle.mm_code}}</h4>
+                    </div>
+                </div>
+                <div class="row" style="margin: 0px 0px 0px 5px">
+                    <div class="col col-34">
+                        <img src="img/year_icon.png">
+                        <label class="offset-label">{{data.vehicle.year_model}}</label>
+                    </div>
+                    <div class="col col-34">
+                        <img src="img/colour_icon.png">
+                        <label class="offset-label">{{data.vehicle.veh_colour}}</label>
+                    </div>
+                    <div class="col col-30">
+                        <img src="img/kilometers_icon.png">
+                        <label class="offset-label">{{data.vehicle.speedo_reading}}</label>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <label class="info-label">FLOOR:</label>
+                        <label class="offset-label">{{data.vehicle.location}}</label>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <label class="info-label">CONTACT NAME:</label>
+                        <label class="offset-label">{{data.vehicle.contact_name}}</label>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <label class="info-label">CONTACT NUMBER:</label><br>
+                        <label class="offset-label">
+                            <a class="button icon-left ion-ios7-telephone button-calm button-outline" ng-href="tel: {{data.vehicle.contact_number}}">Call {{data.vehicle.contact_number}}</a>
+
+
+                        </label>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <label class="info-label"><img src="img/vehicle_type_icon.png" ></label>
+                        <label class="offset-label">{{data.vehicle.veh_type}}</label>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <label class="info-label"><img src="img/service_history_icon.png" ></label>
+                        <label class="offset-label">{{data.vehicle.service_history}}</label>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <label class="info-label"><img src="img/extras_icon.png" ></label>
+                        <label class="offset-label">{{data.vehicle.extra_fitted}}</label>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <label class="info-label">RECON:</label>
+                        <label class="offset-label">R{{data.vehicle.recon_cost}}</label>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="row">
+                    <div class="col">
+                        <a href="#" ng-click="showDetails = ! showDetails" class="siv_click">
+                            <label class="info-label">SIV:</label>
+                        </a>
+                        <label class="offset-label" ng-class="{ 'hidden': ! showDetails }">R{{data.vehicle.standin_value}}</label>
+                    </div>
+                </div>
+
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <label class="info-label">TRADE:</label>
+                        <label class="offset-label">R{{data.vehicle.trade_value}}</label>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <label class="info-label">RETAIL:</label>
+                        <label class="offset-label">R{{data.vehicle.retail_value}}</label>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <label class="info-label">COMMENTS:</label>
+                        <br>
+                        <label class="offset-label">{{data.vehicle.comments}}</label>
+                    </div>
+                </div>
+                <hr>
+                <div class="row" ng-show="role == 'admin'">
+                    <button class="button button-positive" ng-click="deleteStock(data.vehicle.stockid)">
+                        <i class="icon ion-close-circled">Remove Listing</i>
+                    </button>
+                </div>
+            </ion-list>
+        </div>
+    </ion-content>
+</ion-view>
+
